@@ -15,6 +15,7 @@ import {
   Segment
 } from 'semantic-ui-react';
 import RefinementListAccordion from './Components/RefinementListAccordion';
+import CustomRangeSlider from './Components/CustomRangeSlider';
 import ResultCard from './Components/ResultCard';
 import 'instantsearch.css/themes/satellite.css';
 import './App.css';
@@ -91,6 +92,30 @@ function App() {
                 searchable={true}
                 showMore={true}
                 title={"Saison"}
+              />
+              <Accordion
+                as={Segment}
+                className="facet"
+                defaultActiveIndex={[0]}
+                panels={[
+                  {
+                    key: "livres",
+                    title: "Livres",
+                    content: {
+                      content: (
+                        <CustomRangeSlider
+                          attribute='livres'
+                          defaultValues={{
+                              min: 0,
+                              max: 6696
+                          }}
+                        />
+                      )
+                    }
+                  }
+                ]}
+                exclusive={false}
+                fluid
               />
               <RefinementListAccordion
                 attribute={"nom_dauteur"}

@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Divider
 } from 'semantic-ui-react';
 
-const capitalize = (string) => (
-  string ? string[0].toUpperCase() + string.slice(1) : string
-);
+import RecetteModal from './RecetteModal';
+
 
 const ResultCard = (props) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const capitalize = (string) => (
+    string ? string[0].toUpperCase() + string.slice(1) : string
+  );
+
   return (
-    <>
+    <span
+      style={{display: 'flex', width: '100%'}}
+      onClick={() => {
+        if (!modalOpen) {
+          setModalOpen(true)
+        }
+      }}
+    >
+      <RecetteModal
+        registerId={props.hit.register_id}
+        modalOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+      />
+
       <div style={{width: "50%"}}>
         <b>Register ID:</b> {props.hit.register_id}
         <br />
@@ -45,7 +62,7 @@ const ResultCard = (props) => {
         <br />
       </div>
 
-    </>
+    </span>
   );
 };
 

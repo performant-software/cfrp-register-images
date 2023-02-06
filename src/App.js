@@ -5,13 +5,10 @@ import {
   Configure,
   CurrentRefinements,
   Hits,
-  Pagination,
-  RefinementList
+  Pagination
 } from 'react-instantsearch-dom';
 import {
   Accordion,
-  Divider,
-  Icon,
   Segment
 } from 'semantic-ui-react';
 import RefinementListAccordion from './Components/RefinementListAccordion';

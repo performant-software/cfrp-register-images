@@ -14,10 +14,42 @@ const capitalize = (string) => (
 const RefinementListAccordion = (props) => {
   const {
     attribute,
+    facetOrder,
     searchable,
     showMore,
     title
   } = props;
+
+  const transformation = (items) => {
+    if (!facetOrder) {
+      return items.map(item => ({
+        ...item,
+        label: capitalize(item.label)
+      }));
+    }
+    else if (facetOrder === "label") {
+      return items.sort((a, b) => {
+        return a.label - b.label;
+      })
+      .map(item => ({
+        ...item,
+        label: capitalize(item.label)
+      }))
+    }
+    else if (facetOrder === "label:desc") {
+      return items.sort((a, b) => {
+        return b.label - a.label;
+      })
+      .map(item => ({
+        ...item,
+        label: capitalize(item.label)
+      }))
+    }
+    else {
+      return facetOrder(items);
+      // can pass in custom sorting function
+    }
+  };
 
   return (
     <Accordion
@@ -34,15 +66,15 @@ const RefinementListAccordion = (props) => {
                 attribute={attribute}
                 searchable={searchable}
                 showMore={showMore}
-                transformItems={items =>
-                 items.map(item => ({
-                   ...item,
-                   label: capitalize(item.label)
-                 }))
-               }
-                translations={
-                  searchable ? { placeholder: "Cherche ici..." } : {}
-                }
+                showMoreLimit={100}
+                transformItems={(items) => transformation(items)}
+                translations={{
+                  showMore(expanded) {
+                    return expanded ? 'Montrer moins' : 'Montre plus';
+                  },
+                  noResults: 'No results',
+                  placeholder: 'Cherche ici...',
+                }}
               />
             )
           }

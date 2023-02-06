@@ -46,6 +46,41 @@ const capitalize = (string) => (
   string ? string[0].toUpperCase() + string.slice(1) : string
 );
 
+const jourFacetOrder = (items) => {
+  const jourSorter = {
+    'Lundi': 0,
+    'Monday': 0,
+    'Mardi': 1,
+    'Tuesday': 1,
+    'Mercredi': 2,
+    'Wednesday': 2,
+    'Jeudi': 3,
+    'Thursday': 3,
+    'Vendredi': 4,
+    'Friday': 4,
+    'Samedi': 5,
+    'Saturday': 5,
+    'Dimanche': 6,
+    'Sunday': 6
+  };
+
+  return items.sort((a, b) => {
+    return jourSorter[a.label] - jourSorter[b.label];
+    })
+  .map(item => ({
+    ...item,
+    label: capitalize(item.label)
+  }))
+}
+
+const saisonFacetOrder = (items) => {
+  return items.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0))
+  .map(item => ({
+    ...item,
+    label: item.label
+  }))
+}
+
 function App() {
   return (
     <div>
@@ -65,6 +100,7 @@ function App() {
               />
               <RefinementListAccordion
                 attribute={"actes"}
+                facetOrder={"label"}
                 searchable={false}
                 showMore={true}
                 title={"Actes"}
@@ -77,18 +113,21 @@ function App() {
               />
               <RefinementListAccordion
                 attribute={"jour"}
+                facetOrder={jourFacetOrder}
                 searchable={false}
                 showMore={true}
                 title={"Jour"}
               />
               <RefinementListAccordion
                 attribute={"ordre"}
+                facetOrder={"label"}
                 searchable={false}
                 showMore={false}
                 title={"Ordre"}
               />
               <RefinementListAccordion
                 attribute={"saison"}
+                facetOrder={saisonFacetOrder}
                 searchable={true}
                 showMore={true}
                 title={"Saison"}

@@ -19,3 +19,19 @@ yarn start
 ```
 
 Open http://localhost:3000 to see your app.
+
+## Importing Data
+
+Using the Typesense API, data can be imported with the following command:
+
+```sh
+node ./scripts/import.mjs /path/to/documents.jsonl
+```
+
+A JSONL file is required, as well as the following environment variables:
+
+```javascript
+REACT_APP_INDEX_HOST
+REACT_APP_INDEX_NAME
+REACT_APP_SEARCH_API_KEY
+```

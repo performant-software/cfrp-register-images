@@ -21,12 +21,12 @@ import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
-    apiKey: "xyz", // Be sure to use the search-only-api-key
+    apiKey: process.env.REACT_APP_SEARCH_API_KEY, // Be sure to use the search-only-api-key
     nodes: [
       {
-        host: "localhost",
-        port: "8108",
-        protocol: "http"
+        host: process.env.REACT_APP_INDEX_HOST || 'localhost',
+        port: parseInt(process.env.REACT_APP_INDEX_PORT || '8108', 10),
+        protocol: process.env.REACT_APP_INDEX_PROTOCOL || 'http'
       }
     ]
   },
@@ -82,7 +82,10 @@ function App() {
   return (
     <div>
       <div className="container">
-        <InstantSearch searchClient={searchClient} indexName="recettes">
+        <InstantSearch
+          searchClient={searchClient}
+          indexName={process.env.REACT_APP_INDEX_NAME}
+        >
           <Configure hitsPerPage={20} />
 
           <div className="search-panel">
@@ -167,7 +170,7 @@ function App() {
               />
             </div>
 
-            <div className="search-panel__results panel" >
+            <div className="search-panel__results panel">
               <div className="pagination">
                 <Pagination />
               </div>

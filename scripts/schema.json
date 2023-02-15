@@ -1,0 +1,76 @@
+{
+  "fields": [
+    {
+      "name": "register_id",
+      "type": "int64"
+    },
+    {
+      "name": "jour",
+      "type": "string",
+      "facet": true
+    },
+    {
+      "name": "date",
+      "type": "string"
+    },
+    {
+      "name": "saison",
+      "type": "string",
+      "facet": true
+    },
+    {
+      "name": "livres",
+      "type": "int32",
+      "facet": true
+    },
+    {
+      "name": "sous",
+      "type": "int32"
+    },
+    {
+      "name": "play_id",
+      "type": "int64"
+    },
+    {
+      "name": "ordre",
+      "type": "int32",
+      "facet": true
+    },
+    {
+      "name": "personne_id",
+      "type": "int64"
+    },
+    {
+      "name": "nom_dauteur",
+      "type": "string",
+      "facet": true
+    },
+    {
+      "name": "titre",
+      "type": "string",
+      "facet": true
+    },
+    {
+      "name": "genre",
+      "type": "string",
+      "facet": true
+    },
+    {
+      "name": "actes",
+      "type": "int32",
+      "facet": true
+    },
+    {
+      "name": "register_image_filename",
+      "type": "string"
+    },
+    {
+      "name": "register_image_filepath",
+      "type": "string"
+    },
+    {
+      "name": "register_image_orientation",
+      "type": "string"
+    }
+  ]
+}

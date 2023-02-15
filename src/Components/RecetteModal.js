@@ -5,12 +5,20 @@ import {
 
 
 const RecetteModal = (props) => {
-  const { registerId, modalOpen, onClose } = props;
+  const {
+    imageFilepath,
+    modalOpen,
+    onClose,
+    registerId
+  } = props;
 
   const handleClose = () => {
     onClose();
   };
 
+  const imageStrings = imageFilepath ? imageFilepath.split("_") : "";
+  const imageRegister = imageStrings[2] || "";
+  const imagePage = imageFilepath ? imageStrings[imageStrings.length - 1].replace('.jpg','') : "";
 
   return (
     <Modal
@@ -20,12 +28,24 @@ const RecetteModal = (props) => {
       size='large'
     >
       <Modal.Header>
-        <h1>Register ID {registerId}</h1>
+        <h1>Recette ID {registerId}</h1>
       </Modal.Header>
-      <Modal.Content >
-        <iframe src="https://flipbooks.cfregisters.org/R105/index.html#page/17/mode/1up" title="Register Image" width="100%" height="600px"></iframe>
-
-      </Modal.Content>
+      { imageFilepath &&
+        <Modal.Content >
+          <iframe
+            src={"https://flipbooks.cfregisters.org/"+imageRegister+"/index.html#page/"+imagePage+"/mode/2up"}
+            title={"Register Image"}
+            width={"100%"}
+            height={"500px"}
+          >
+          </iframe>
+        </Modal.Content>
+      }
+      { !imageFilepath &&
+        <Modal.Content>
+          <h3>Aucune image trouvée pour Recette ID {registerId}</h3>
+        </Modal.Content>
+      }
     </Modal>
   );
 };

@@ -22,9 +22,10 @@ const ResultCard = (props) => {
       }}
     >
       <RecetteModal
-        registerId={props.hit.register_id}
+        imageFilepath={props.hit.register_image_filename}
         modalOpen={modalOpen}
         onClose={() => setModalOpen(false)}
+        registerId={props.hit.register_id}
       />
 
       <div style={{width: "50%"}}>

@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
-import {
-  Divider
-} from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react';
 
 import RecetteModal from './RecetteModal';
 
-
-const ResultCard = (props) => {
+const ResultCard = props => {
   const [modalOpen, setModalOpen] = useState(false);
-  const capitalize = (string) => (
-    string ? string[0].toUpperCase() + string.slice(1) : string
-  );
+  const capitalize = string =>
+    string ? string[0].toUpperCase() + string.slice(1) : string;
 
   return (
     <span
-      style={{display: 'flex', width: '100%'}}
+      style={{ display: 'flex', width: '100%' }}
       onClick={() => {
         if (!modalOpen) {
-          setModalOpen(true)
+          setModalOpen(true);
         }
       }}
     >
@@ -25,15 +21,10 @@ const ResultCard = (props) => {
         imageFilepath={props.hit.register_image_filename}
         modalOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        registerId={props.hit.register_id}
+        title={props.hit.titre}
       />
 
-      <div style={{width: "50%"}}>
-        <b>Register ID:</b> {props.hit.register_id}
-        <br />
-        <b>Play ID:</b> {props.hit.play_id}
-        <br />
-        <Divider />
+      <div style={{ width: '50%' }}>
         <b>Titre:</b> {props.hit.titre}
         <br />
         <b>Genre:</b> {capitalize(props.hit.genre)}
@@ -43,13 +34,11 @@ const ResultCard = (props) => {
         <b>Ordre:</b> {props.hit.ordre}
         <br />
         <Divider />
-        <b>Nom D'Auteur:</b> {props.hit.nom_dauteur}
-        <br />
-        <b>Personne ID:</b> {props.hit.personne_id}
+        <b>Nom D&apos;Auteur:</b> {props.hit.nom_dauteur}
         <br />
       </div>
 
-      <div style={{width: "50%", marginLeft: "25px"}}>
+      <div style={{ width: '50%', marginLeft: '25px' }}>
         <b>Saison:</b> {props.hit.saison}
         <br />
         <b>Date:</b> {props.hit.date}
@@ -59,10 +48,9 @@ const ResultCard = (props) => {
         <Divider />
         <b>Livres:</b> {props.hit.livres}
         <br />
-        <b>Sous:</b> {props.hit.sous}
+        <b>Sols:</b> {props.hit.sols}
         <br />
       </div>
-
     </span>
   );
 };

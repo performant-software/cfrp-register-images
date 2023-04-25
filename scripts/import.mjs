@@ -61,7 +61,7 @@ const run = async () => {
       name: indexName
     });
 
-  const data = await fs.readFileSync(filepath);
+  const data = fs.readFileSync(filepath);
 
   log('Importing data...');
 

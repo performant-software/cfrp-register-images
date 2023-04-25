@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useEffect, useState } from 'react';
-import { connectRange } from 'react-instantsearch-dom'
+
+import { connectRange } from 'react-instantsearch-dom';
 
 const RangeSlider = ({ defaultValues, currentRefinement, refine }) => {
-  const [value, setValue] = useState(null)
-  const [valueDisplay, setValueDisplay] = useState({ min: defaultValues.min, max: defaultValues.max })
+  const [value, setValue] = useState(null);
+  const [valueDisplay, setValueDisplay] = useState({
+    min: defaultValues.min,
+    max: defaultValues.max,
+  });
   const styles = {
     sliderValues: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginBottom: '5px'
-    }
-  }
+      marginBottom: '5px',
+    },
+  };
 
   useEffect(() => {
     if (value) {
-      const [min, max] = value
-      refine({ min, max })
+      const [min, max] = value;
+      refine({ min, max });
     }
-  }, [value, refine])
+  }, [value, refine]);
 
   useEffect(() => {
-    if (currentRefinement.min !== valueDisplay.min || currentRefinement.max !== valueDisplay.max ) {
-      setValueDisplay({ min: currentRefinement.min, max: currentRefinement.max })
-      setValue([currentRefinement.min, currentRefinement.max])
+    if (
+      currentRefinement.min !== valueDisplay.min ||
+      currentRefinement.max !== valueDisplay.max
+    ) {
+      setValueDisplay({
+        min: currentRefinement.min,
+        max: currentRefinement.max,
+      });
+      setValue([currentRefinement.min, currentRefinement.max]);
     }
-  }, [currentRefinement])
+  }, [currentRefinement]);
 
   return (
     <>

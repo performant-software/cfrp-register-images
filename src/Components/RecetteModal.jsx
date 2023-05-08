@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Modal } from 'semantic-ui-react';
+import { generateDate } from '../helpers/date';
 
 const RecetteModal = props => {
-  const { imageFilepath, modalOpen, onClose, title } = props;
+  const { imageFilepath, modalOpen, onClose, hit } = props;
 
   const handleClose = () => {
     onClose();
@@ -14,10 +15,12 @@ const RecetteModal = props => {
     ? imageStrings[imageStrings.length - 1].replace('.jpg', '')
     : '';
 
+  const date = useMemo(() => generateDate(hit.date))
+
   return (
     <Modal open={modalOpen} closeIcon onClose={handleClose} size="large">
       <Modal.Header>
-        <h1>{title}</h1>
+        <h1>{date}</h1>
       </Modal.Header>
       {imageFilepath && (
         <Modal.Content>
@@ -31,7 +34,7 @@ const RecetteModal = props => {
       )}
       {!imageFilepath && (
         <Modal.Content>
-          <h3>Aucune image trouvée pour {title}</h3>
+          <h3>Aucune image trouvée</h3>
         </Modal.Content>
       )}
     </Modal>

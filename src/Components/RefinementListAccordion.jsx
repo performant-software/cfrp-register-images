@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefinementList } from 'react-instantsearch-dom';
+import { RefinementList } from 'react-instantsearch-hooks-web';
 import { Accordion, Segment } from 'semantic-ui-react';
 
 const capitalize = string =>

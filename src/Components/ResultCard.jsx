@@ -21,7 +21,7 @@ const ResultCard = props => {
         imageFilepath={props.hit.register_image_filename}
         modalOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        title={props.hit.titre}
+        hit={props.hit}
       />
 
       <div style={{ width: '50%' }}>
@@ -29,7 +29,7 @@ const ResultCard = props => {
         <br />
         <b>Genre:</b> {capitalize(props.hit.genre)}
         <br />
-        <b>Actes:</b> {props.hit.actes}
+        <b>Nombre d&apos;actes:</b> {props.hit.actes}
         <br />
         <b>Ordre:</b> {props.hit.ordre}
         <br />

@@ -6,12 +6,11 @@ import {
   CurrentRefinements,
   Hits,
   Pagination,
-} from 'react-instantsearch-dom';
+} from 'react-instantsearch-hooks-web';
 import { Accordion, Segment } from 'semantic-ui-react';
 import RefinementListAccordion from './Components/RefinementListAccordion';
 import CustomRangeSlider from './Components/CustomRangeSlider';
 import ResultCard from './Components/ResultCard';
-import 'instantsearch.css/themes/satellite.css';
 import './App.css';
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
@@ -79,6 +78,7 @@ const App = () => (
       <InstantSearch
         searchClient={searchClient}
         indexName={process.env.REACT_APP_INDEX_NAME}
+        routing={true}
       >
         <Configure hitsPerPage={20} routing={true} />
 
@@ -103,7 +103,7 @@ const App = () => (
               facetOrder={'label'}
               searchable={false}
               showMore={true}
-              title={'Actes'}
+              title={'Nombre d\'actes'}
             />
             <RefinementListAccordion
               attribute={'genre'}
@@ -148,6 +148,8 @@ const App = () => (
                           min: 0,
                           max: 6696,
                         }}
+                        min={0}
+                        max={6696}
                       />
                     ),
                   },

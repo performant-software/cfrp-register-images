@@ -6,11 +6,13 @@ import {
   CurrentRefinements,
   Hits,
   Pagination,
+  Stats
 } from 'react-instantsearch-hooks-web';
 import { Accordion, Segment } from 'semantic-ui-react';
 import RefinementListAccordion from './Components/RefinementListAccordion';
 import CustomRangeSlider from './Components/CustomRangeSlider';
 import ResultCard from './Components/ResultCard';
+import locale from './locale';
 import './App.css';
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
@@ -30,7 +32,8 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  So you can pass any parameters supported by the search endpoint below.
   //  queryBy is required.
   additionalSearchParameters: {
-    queryBy: 'date',
+    query_by: 'performance_date',
+    sort_by: 'season_start_year:asc,_text_match:desc'
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -64,14 +67,6 @@ const jourFacetOrder = items => {
     }));
 };
 
-const saisonFacetOrder = items =>
-  items
-    .sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0))
-    .map(item => ({
-      ...item,
-      label: item.label,
-    }));
-
 const App = () => (
   <div>
     <div className="container">
@@ -80,7 +75,11 @@ const App = () => (
         indexName={process.env.REACT_APP_INDEX_NAME}
         routing={true}
       >
-        <Configure hitsPerPage={20} routing={true} />
+        <Configure
+          filters=''
+          hitsPerPage={20}
+          routing={true}
+        />
 
         <div className="search-panel">
           <div className="search-panel__filters panel">
@@ -91,46 +90,81 @@ const App = () => (
             <ClearRefinements
               // Optional parameters
               clearsQuery={true}
+              translations={{
+                resetButtonText: locale['clear_refinements']
+              }}
             />
             <RefinementListAccordion
-              attribute={'nom_dauteur'}
+              attribute={'author_1'}
               searchable={true}
               showMore={true}
-              title={"Nom D'Auteur"}
+              title={locale['author_1']}
             />
             <RefinementListAccordion
-              attribute={'actes'}
+              attribute={'author_2'}
+              searchable={true}
+              showMore={true}
+              title={locale['author_2']}
+            />
+            <RefinementListAccordion
+              attribute={'play_1'}
+              searchable={true}
+              showMore={true}
+              title={locale['play_1']}
+            />
+            <RefinementListAccordion
+              attribute={'play_2'}
+              searchable={true}
+              showMore={true}
+              title={locale['play_2']}
+            />
+            <Accordion
+              as={Segment}
+              className="facet"
+              defaultActiveIndex={[0]}
+              panels={[
+                {
+                  key: 'season_start_year',
+                  title: locale['season'],
+                  content: {
+                    content: (
+                      <CustomRangeSlider
+                        attribute="season_start_year"
+                        defaultValues={{
+                          min: 1680,
+                          max: 1792,
+                        }}
+                        min={1680}
+                        max={1792}
+                        renderValue={(value) => `${value}-${value + 1}`}
+                      />
+                    ),
+                  },
+                },
+              ]}
+              exclusive={false}
+              fluid
+            />
+            <RefinementListAccordion
+              attribute={'nombre_d_actes_1'}
               facetOrder={'label'}
               searchable={false}
               showMore={true}
-              title={'Nombre d\'actes'}
+              title={locale['nombre_d_actes_1']}
             />
             <RefinementListAccordion
-              attribute={'genre'}
-              searchable={true}
+              attribute={'nombre_d_actes_2'}
+              facetOrder={'label'}
+              searchable={false}
               showMore={true}
-              title={'Genre'}
-            />
-            <RefinementListAccordion
-              attribute={'saison'}
-              facetOrder={saisonFacetOrder}
-              searchable={true}
-              showMore={true}
-              title={'Saison'}
+              title={locale['nombre_d_actes_2']}
             />
             <RefinementListAccordion
               attribute={'jour'}
               facetOrder={jourFacetOrder}
               searchable={false}
               showMore={true}
-              title={'Jour'}
-            />
-            <RefinementListAccordion
-              attribute={'ordre'}
-              facetOrder={'label'}
-              searchable={false}
-              showMore={false}
-              title={'Ordre'}
+              title={locale['jour']}
             />
             <Accordion
               as={Segment}
@@ -139,7 +173,7 @@ const App = () => (
               panels={[
                 {
                   key: 'livres',
-                  title: 'Livres',
+                  title: locale['livres'],
                   content: {
                     content: (
                       <CustomRangeSlider
@@ -159,14 +193,27 @@ const App = () => (
               fluid
             />
             <RefinementListAccordion
-              attribute={'titre'}
+              attribute={'genre_1'}
               searchable={true}
               showMore={true}
-              title={'Titre'}
+              title={locale['genre_1']}
+            />
+            <RefinementListAccordion
+              attribute={'genre_2'}
+              searchable={true}
+              showMore={true}
+              title={locale['genre_2']}
             />
           </div>
 
           <div className="search-panel__results panel">
+            <Stats
+              translations={{
+                stats({ nbHits, processingTimeMS }) {
+                  return `${nbHits.toLocaleString()} resultats trouvés dans ${processingTimeMS.toLocaleString()}ms`
+                }
+              }}
+            />
             <div className="pagination">
               <Pagination />
             </div>
@@ -174,6 +221,13 @@ const App = () => (
             <div className="pagination">
               <Pagination />
             </div>
+            <Stats
+              translations={{
+                stats({ nbHits, processingTimeMS }) {
+                  return `${nbHits.toLocaleString()} resultats trouvés dans ${processingTimeMS.toLocaleString()}ms`
+                }
+              }}
+            />
           </div>
         </div>
       </InstantSearch>

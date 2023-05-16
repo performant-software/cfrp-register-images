@@ -1,16 +1,61 @@
-import React, { useState } from 'react';
-import { Divider } from 'semantic-ui-react';
+import React, { useMemo, useState } from 'react';
+import { Divider, Icon } from 'semantic-ui-react';
+import locale from '../locale';
 
 import RecetteModal from './RecetteModal';
 
+const splitPlays = (hit) => {
+  const plays = [];
+
+  for (let i = 1; i < 5; i++) {
+    if (hit[`play_${i}`]) {
+      plays.push({
+        title: hit[`play_${i}`],
+        author: hit[`author_${i}`],
+        genre: hit[`genre_${i}`],
+        actCount: hit[`nombre_d_actes_${i}`]
+      })
+    }
+  }
+
+  return plays;
+}
+
+const styles = {
+  top_data: {
+    display: 'flex',
+    width: '100%',
+    gap: 16,
+    flexWrap: 'wrap',
+    justifyContent: 'center'
+  },
+  play_cards_container: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 10,
+    justifyContent: 'center',
+    flexWrap: 'wrap'
+  },
+  play_card: {
+    background: '#f2f4f4',
+    padding: 10,
+    borderRadius: 5,
+    lineHeight: 1.5,
+    width: '100%'
+  }
+}
+
+const capitalize = string =>
+  string ? string[0].toUpperCase() + string.slice(1) : string;
+
 const ResultCard = props => {
   const [modalOpen, setModalOpen] = useState(false);
-  const capitalize = string =>
-    string ? string[0].toUpperCase() + string.slice(1) : string;
+
+  const plays = useMemo(() => splitPlays(props.hit), [props.hit])
 
   return (
-    <span
-      style={{ display: 'flex', width: '100%' }}
+    <div
+      style={{ width: '100%' }}
       onClick={() => {
         if (!modalOpen) {
           setModalOpen(true);
@@ -24,34 +69,42 @@ const ResultCard = props => {
         hit={props.hit}
       />
 
-      <div style={{ width: '50%' }}>
-        <b>Titre:</b> {props.hit.titre}
+      <div style={styles.top_data}>
+        <span><b>{locale['season']}:</b> {props.hit.season_start_year} - {props.hit.season_end_year}</span>
         <br />
-        <b>Genre:</b> {capitalize(props.hit.genre)}
+        <span><b>{locale['performance_date']}:</b> {props.hit.performance_date}</span>
         <br />
-        <b>Nombre d&apos;actes:</b> {props.hit.actes}
+        <span><b>{locale['jour']}:</b> {props.hit.jour}</span>
         <br />
-        <b>Ordre:</b> {props.hit.ordre}
-        <br />
-        <Divider />
-        <b>Nom D&apos;Auteur:</b> {props.hit.nom_dauteur}
-        <br />
+        <span><b>{locale['livres']}:</b> {props.hit.livres}</span>
       </div>
 
-      <div style={{ width: '50%', marginLeft: '25px' }}>
-        <b>Saison:</b> {props.hit.saison}
-        <br />
-        <b>Date:</b> {props.hit.date}
-        <br />
-        <b>Jour:</b> {props.hit.jour}
-        <br />
-        <Divider />
-        <b>Livres:</b> {props.hit.livres}
-        <br />
-        <b>Sols:</b> {props.hit.sols}
-        <br />
+      <Divider />
+
+      <div style={styles.play_cards_container}>
+        {plays.map((p, index) => (
+          <div key={index} style={{ display: 'flex', gap: 10 }}>
+            <p>{index + 1}.</p>
+            <div style={styles.play_card}>
+              <b>{locale['author']}:</b> {p.author}
+              <br />
+              <b>{locale['title']}:</b> {p.title}
+              <br />
+              <b>{locale['genre']}:</b> {capitalize(p.genre)}
+              <br />
+              <b>{locale['nombre_d_actes']}:</b> {p.actCount}
+              <br />
+            </div>
+          </div>
+        ))}
       </div>
-    </span>
+
+
+
+      <div style={{ width: '100%', textAlign: 'center', paddingTop: '16px' }}>
+        <Icon name='camera' size='large' />
+      </div>
+    </div>
   );
 };
 

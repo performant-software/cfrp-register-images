@@ -50,11 +50,27 @@ const CustomRangeSlider = (props) => {
     }
   }, [start]);
 
+  const renderValue = (value, type) => {
+    let display;
+
+    if (value === Infinity || value === -Infinity) {
+      display = type === 'min' ? props.defaultValues.min : props.defaultValues.max;
+    } else {
+      display = value;
+    }
+
+    if (props.renderValue) {
+      display = props.renderValue(display)
+    }
+
+    return display;
+  }
+
   return (
     <>
       <div style={styles.sliderValues}>
-        <span>{valueDisplay.min}</span>
-        <span>{valueDisplay.max}</span>
+        <span>{renderValue(valueDisplay.min, 'min')}</span>
+        <span>{renderValue(valueDisplay.max, 'max')}</span>
       </div>
       <Slider
         range

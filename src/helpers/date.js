@@ -5,7 +5,7 @@ export const generateDate = (dateStr) => {
     return 'Date invalide'
   }
 
-  const date = new Date(split)
+  const date = new Date(split.join('/'))
   const str = date.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
 
   // Insert commas after day of week and date

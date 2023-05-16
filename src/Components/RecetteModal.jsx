@@ -15,7 +15,7 @@ const RecetteModal = props => {
     ? imageStrings[imageStrings.length - 1].replace('.jpg', '')
     : '';
 
-  const date = useMemo(() => generateDate(hit.date))
+  const date = useMemo(() => generateDate(hit.performance_date))
 
   return (
     <Modal open={modalOpen} closeIcon onClose={handleClose} size="large">

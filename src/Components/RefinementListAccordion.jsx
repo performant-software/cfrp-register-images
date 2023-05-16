@@ -1,6 +1,7 @@
 import React from 'react';
 import { RefinementList } from 'react-instantsearch-hooks-web';
 import { Accordion, Segment } from 'semantic-ui-react';
+import locale from '../locale';
 
 const capitalize = string =>
   string ? string[0].toUpperCase() + string.slice(1) : string;
@@ -52,8 +53,8 @@ const RefinementListAccordion = props => {
                 showMoreLimit={100}
                 transformItems={items => transformation(items)}
                 translations={{
-                  showMore(expanded) {
-                    return expanded ? 'Montrer moins' : 'Montre plus';
+                  showMoreButtonText({ isShowingMore }) {
+                    return isShowingMore ? locale['show_less'] : locale['show_more'];
                   },
                   noResults: 'No results',
                   placeholder: 'Cherche ici...',

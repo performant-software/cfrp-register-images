@@ -10,12 +10,25 @@
       "facet": true
     },
     {
-      "name": "date",
+      "name": "performance_date",
       "type": "string"
     },
     {
-      "name": "saison",
-      "type": "string",
+      "name": "total_revenue",
+      "type": "string"
+    },
+    {
+      "name": "parterre_total",
+      "type": "string"
+    },
+    {
+      "name": "season_start_year",
+      "type": "int32",
+      "facet": true
+    },
+    {
+      "name": "season_end_year",
+      "type": "int32",
       "facet": true
     },
     {
@@ -24,41 +37,52 @@
       "facet": true
     },
     {
-      "name": "sols",
-      "type": "int32"
+      "name": "author_1",
+      "type": "string",
+      "facet": true,
+      "optional": true
     },
     {
-      "name": "play_id",
-      "type": "int64"
+      "name": "author_2",
+      "type": "string",
+      "facet": true,
+      "optional": true
     },
     {
-      "name": "ordre",
+      "name": "play_1",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "play_2",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "nombre_d_actes_1",
       "type": "int32",
-      "facet": true
+      "facet": true,
+      "optional": true
     },
     {
-      "name": "personne_id",
-      "type": "int64"
-    },
-    {
-      "name": "nom_dauteur",
-      "type": "string",
-      "facet": true
-    },
-    {
-      "name": "titre",
-      "type": "string",
-      "facet": true
-    },
-    {
-      "name": "genre",
-      "type": "string",
-      "facet": true
-    },
-    {
-      "name": "actes",
+      "name": "nombre_d_actes_2",
       "type": "int32",
-      "facet": true
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "genre_1",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "genre_2",
+      "type": "string",
+      "facet": true,
+      "optional": true
     },
     {
       "name": "register_image_filename",

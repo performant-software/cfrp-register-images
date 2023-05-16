@@ -116,3 +116,13 @@ em {
 .ais-Hits {
   width: 100%;
 }
+
+.ais-CurrentRefinements-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ais-CurrentRefinements-item {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -86,6 +86,7 @@ const App = () => (
             <CurrentRefinements
               // Optional parameters
               clearsQuery={true}
+              transformItems={items => (items.map(i => ({ ...i, label: locale[i.attribute] })))}
             />
             <ClearRefinements
               // Optional parameters

@@ -1,11 +1,12 @@
 import React from 'react';
 import { useRefinementList } from 'react-instantsearch-hooks-web';
 import ItemCountBar from './ItemCountBar';
+import CustomShowMoreButton from './CustomShowMoreButton';
 
 import _ from 'underscore';
 
 function CustomRefinementList(props) {
-  const { items, refine } = useRefinementList(props);
+  const { items, refine, canToggleShowMore, isShowingMore, toggleShowMore } = useRefinementList(props);
 
   const maxCount = Math.max(..._.map(items, (item) => item.count));
 
@@ -43,15 +44,15 @@ function CustomRefinementList(props) {
             </li>
           ))}
         </ul>
-        {/* {showMore && (
-        <ShowMoreButton
+        {props.showMore && (
+        <CustomShowMoreButton
           className={`ais-RefinementList-showMore ${!canToggleShowMore && 'ais-RefinementList-showMore--disabled'}`}
           disabled={!canToggleShowMore}
-          onClick={onToggleShowMore}
+          onClick={toggleShowMore}
           isShowingMore={isShowingMore}
-          translations={translations}
+          translations={props.translations}
         />
-      )} */}
+      )}
     </div>
   );
 }

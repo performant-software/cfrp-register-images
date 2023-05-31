@@ -2,15 +2,14 @@ import React from 'react';
 import { Accordion, Segment } from 'semantic-ui-react';
 import locale from '../locale';
 import CustomRefinementList from './CustomRefinementList';
-import _ from 'underscore';
 
 const capitalize = string =>
   string ? string[0].toUpperCase() + string.slice(1) : string;
 
 const CustomRefinementListAccordion = props => {
-  const { attribute, facetOrder, searchable, showMore, title } = props;
+  const { attribute, facetOrder, searchable, showMore, title, labelTransform } = props;
 
-  const transformation = items => {
+  const sortTransform = items => {
     if (!facetOrder) {
       return items.map(item => ({
         ...item,
@@ -36,16 +35,12 @@ const CustomRefinementListAccordion = props => {
     }
   };
 
-  //this isn't pretty, but just hard coding this for right now
-  const tierLabels = items => {
-    if (attribute == 'tier') {
-      return _.map(items, (item) => ({
-        ...item,
-        label: item.label*100 + '-' + (item.label*100+99)
-      }));
-    }
-    return items;
-  };
+  //if a label transform was passed in, apply it after the sort transform
+  const transformation = items => {
+    return (
+      labelTransform ? labelTransform(sortTransform(items)) : sortTransform(items)
+    );
+  }
 
   return (
     <Accordion
@@ -63,7 +58,7 @@ const CustomRefinementListAccordion = props => {
                 searchable={searchable}
                 showMore={showMore}
                 showMoreLimit={100}
-                transformItems={items => tierLabels(transformation(items))}
+                transformItems={items => transformation(items)}
                 translations={{
                   showMoreButtonText({ isShowingMore }) {
                     return isShowingMore ? locale['show_less'] : locale['show_more'];

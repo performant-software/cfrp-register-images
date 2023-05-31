@@ -18,6 +18,8 @@ import './App.css';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 import CustomRefinementListAccordion from './Components/CustomRefinementListAccordion';
 
+import _ from 'underscore';
+
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
     apiKey: process.env.REACT_APP_SEARCH_API_KEY, // Be sure to use the search-only-api-key
@@ -173,6 +175,7 @@ const App = () => (
               facetOrder={'label'}
               searchable={false}
               showMore={true}
+              labelTransform={(items) => _.map(items, (item) => ({...item, label: item.label*100 + '-' + (item.label*100+99)}))}
               title={locale['livres']}
             />
             <Accordion

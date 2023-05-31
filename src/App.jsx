@@ -16,6 +16,7 @@ import locale from './locale';
 import './App.css';
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
+import CustomRefinementListAccordion from './Components/CustomRefinementListAccordion';
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -166,6 +167,13 @@ const App = () => (
               searchable={false}
               showMore={true}
               title={locale['jour']}
+            />
+            <CustomRefinementListAccordion
+              attribute={'tier'}
+              facetOrder={'label'}
+              searchable={false}
+              showMore={true}
+              title={locale['livres']}
             />
             <Accordion
               as={Segment}

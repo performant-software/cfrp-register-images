@@ -63,8 +63,8 @@ const CustomRefinementListAccordion = props => {
                   showMoreButtonText({ isShowingMore }) {
                     return isShowingMore ? locale['show_less'] : locale['show_more'];
                   },
-                  noResults: 'No results',
-                  placeholder: 'Cherche ici...',
+                  noResults: locale['noResults'],
+                  placeholder: locale['placeholder'],
                 }}
               />
             ),

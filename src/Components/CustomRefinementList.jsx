@@ -3,12 +3,10 @@ import { useRefinementList } from 'react-instantsearch-hooks-web';
 import ItemCountBar from './ItemCountBar';
 import CustomShowMoreButton from './CustomShowMoreButton';
 
-import _ from 'underscore';
-
 function CustomRefinementList(props) {
   const { items, refine, canToggleShowMore, isShowingMore, toggleShowMore } = useRefinementList(props);
 
-  const maxCount = Math.max(..._.map(items, (item) => item.count));
+  const maxCount = Math.max(...items.map((item) => item.count));
 
   return (
     <div>

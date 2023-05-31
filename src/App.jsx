@@ -34,7 +34,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  queryBy is required.
   additionalSearchParameters: {
     query_by: 'performance_date',
-    sort_by: 'season_start_year:asc,_text_match:desc'
+    sort_by: 'performance_date_timestamp:desc,_text_match:desc'
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -120,7 +120,7 @@ const App = () => (
               showMore={true}
               title={locale['play_2']}
             />
-            <Accordion
+            {/* <Accordion
               as={Segment}
               className="facet"
               defaultActiveIndex={[0]}
@@ -146,7 +146,7 @@ const App = () => (
               ]}
               exclusive={false}
               fluid
-            />
+            /> */}
             <RefinementListAccordion
               attribute={'nombre_d_actes_1'}
               facetOrder={'label'}

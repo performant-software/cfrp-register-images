@@ -15,24 +15,25 @@
     },
     {
       "name": "performance_date_timestamp",
-      "type": "string"
+      "type": "string",
+      "sort": true
     },
     {
       "name": "total_revenue",
-      "type": "float"
+      "type": "string"
     },
     {
       "name": "parterre_total",
-      "type": "int32"
+      "type": "string"
     },
     {
       "name": "season_start_year",
-      "type": "int32",
+      "type": "string",
       "facet": true
     },
     {
       "name": "season_end_year",
-      "type": "int32",
+      "type": "string",
       "facet": true
     },
     {
@@ -96,14 +97,6 @@
     },
     {
       "name": "register_image_filename",
-      "type": "string"
-    },
-    {
-      "name": "register_image_filepath",
-      "type": "string"
-    },
-    {
-      "name": "register_image_orientation",
       "type": "string"
     }
   ]

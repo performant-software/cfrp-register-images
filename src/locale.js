@@ -7,7 +7,6 @@ const locale = {
   season: 'Saison',
   season_start_year: "Année d'ouverture de la saison",
   season_end_year: "Année de clotûre de la saison",
-  livres: 'Recettes Totales',
   author: "Nom d'Auteur",
   author_1: "Nom d'Auteur no. 1",
   author_2: "Nom d'Auteur no. 2",

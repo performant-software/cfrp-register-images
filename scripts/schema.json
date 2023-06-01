@@ -20,7 +20,8 @@
     },
     {
       "name": "total_revenue",
-      "type": "string"
+      "type": "int32",
+      "facet": true
     },
     {
       "name": "parterre_total",
@@ -28,12 +29,12 @@
     },
     {
       "name": "season_start_year",
-      "type": "string",
+      "type": "int32",
       "facet": true
     },
     {
       "name": "season_end_year",
-      "type": "string",
+      "type": "int32",
       "facet": true
     },
     {

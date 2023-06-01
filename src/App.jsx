@@ -120,7 +120,7 @@ const App = () => (
               showMore={true}
               title={locale['play_2']}
             />
-            {/* <Accordion
+            <Accordion
               as={Segment}
               className="facet"
               defaultActiveIndex={[0]}
@@ -146,7 +146,7 @@ const App = () => (
               ]}
               exclusive={false}
               fluid
-            /> */}
+            />
             <RefinementListAccordion
               attribute={'nombre_d_actes_1'}
               facetOrder={'label'}
@@ -174,7 +174,7 @@ const App = () => (
               searchable={false}
               showMore={true}
               labelTransform={(items) => items.map((item) => ({...item, label: item.label*100 + '-' + (item.label*100+99)}))}
-              title={locale['livres']}
+              title={locale['total_revenue']}
             />
             <Accordion
               as={Segment}
@@ -182,12 +182,12 @@ const App = () => (
               defaultActiveIndex={[0]}
               panels={[
                 {
-                  key: 'livres',
-                  title: locale['livres'],
+                  key: 'total_revenue',
+                  title: locale['total_revenue'],
                   content: {
                     content: (
                       <CustomRangeSlider
-                        attribute="livres"
+                        attribute='total_revenue'
                         defaultValues={{
                           min: 0,
                           max: 6696,

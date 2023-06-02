@@ -76,7 +76,7 @@ const ResultCard = props => {
         <br />
         <span><b>{locale['jour']}:</b> {props.hit.jour}</span>
         <br />
-        <span><b>{locale['livres']}:</b> {props.hit.livres}</span>
+        <span><b>{locale['total_revenue']}:</b> {props.hit.total_revenue}</span>
       </div>
 
       <Divider />

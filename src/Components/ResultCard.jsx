@@ -11,7 +11,7 @@ const splitPlays = (hit) => {
     if (hit[`play_${i}`]) {
       plays.push({
         title: hit[`play_${i}`],
-        author: hit[`author_${i}`],
+        author: hit[`author_${i}`].join(', '),
         genre: hit[`genre_${i}`],
         actCount: hit[`nombre_d_actes_${i}`]
       })
@@ -51,7 +51,7 @@ const capitalize = string =>
 const ResultCard = props => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const plays = useMemo(() => splitPlays(props.hit), [props.hit])
+  const plays = useMemo(() => splitPlays(props.hit), [props.hit]);
 
   return (
     <div
@@ -76,7 +76,7 @@ const ResultCard = props => {
         <br />
         <span><b>{locale['jour']}:</b> {props.hit.jour}</span>
         <br />
-        <span><b>{locale['livres']}:</b> {props.hit.livres}</span>
+        <span><b>{locale['total_revenue']}:</b> {props.hit.total_revenue}</span>
       </div>
 
       <Divider />

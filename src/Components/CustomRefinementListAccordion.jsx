@@ -1,15 +1,15 @@
 import React from 'react';
-import { RefinementList } from 'react-instantsearch-hooks-web';
 import { Accordion, Segment } from 'semantic-ui-react';
 import locale from '../locale';
+import CustomRefinementList from './CustomRefinementList';
 
 const capitalize = string =>
   string ? string[0].toUpperCase() + string.slice(1) : string;
 
-const RefinementListAccordion = props => {
-  const { attribute, facetOrder, searchable, showMore, title } = props;
+const CustomRefinementListAccordion = props => {
+  const { attribute, facetOrder, searchable, showMore, title, labelTransform } = props;
 
-  const transformation = items => {
+  const sortTransform = items => {
     if (!facetOrder) {
       return items.map(item => ({
         ...item,
@@ -35,6 +35,13 @@ const RefinementListAccordion = props => {
     }
   };
 
+  //if a label transform was passed in, apply it after the sort transform
+  const transformation = items => {
+    return (
+      labelTransform ? labelTransform(sortTransform(items)) : sortTransform(items)
+    );
+  }
+
   return (
     <Accordion
       as={Segment}
@@ -46,7 +53,7 @@ const RefinementListAccordion = props => {
           title,
           content: {
             content: (
-              <RefinementList
+              <CustomRefinementList
                 attribute={attribute}
                 searchable={searchable}
                 showMore={showMore}
@@ -70,4 +77,4 @@ const RefinementListAccordion = props => {
   );
 };
 
-export default RefinementListAccordion;
+export default CustomRefinementListAccordion;

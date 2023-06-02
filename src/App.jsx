@@ -16,6 +16,7 @@ import locale from './locale';
 import './App.css';
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
+import CustomRefinementListAccordion from './Components/CustomRefinementListAccordion';
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -33,7 +34,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  queryBy is required.
   additionalSearchParameters: {
     query_by: 'performance_date',
-    sort_by: 'season_start_year:asc,_text_match:desc'
+    sort_by: 'performance_date_timestamp:desc,_text_match:desc'
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -167,18 +168,26 @@ const App = () => (
               showMore={true}
               title={locale['jour']}
             />
+            <CustomRefinementListAccordion
+              attribute={'tier'}
+              facetOrder={'label'}
+              searchable={false}
+              showMore={true}
+              labelTransform={(items) => items.map((item) => ({...item, label: item.label*100 + '-' + (item.label*100+99)}))}
+              title={locale['total_revenue']}
+            />
             <Accordion
               as={Segment}
               className="facet"
               defaultActiveIndex={[0]}
               panels={[
                 {
-                  key: 'livres',
-                  title: locale['livres'],
+                  key: 'total_revenue',
+                  title: locale['total_revenue'],
                   content: {
                     content: (
                       <CustomRangeSlider
-                        attribute="livres"
+                        attribute='total_revenue'
                         defaultValues={{
                           min: 0,
                           max: 6696,

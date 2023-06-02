@@ -14,8 +14,14 @@
       "type": "string"
     },
     {
+      "name": "performance_date_timestamp",
+      "type": "string",
+      "sort": true
+    },
+    {
       "name": "total_revenue",
-      "type": "string"
+      "type": "int32",
+      "facet": true
     },
     {
       "name": "parterre_total",
@@ -37,14 +43,20 @@
       "facet": true
     },
     {
+      "name": "tier",
+      "type": "int32",
+      "facet": true,
+      "optional": true
+    },
+    {
       "name": "author_1",
-      "type": "string",
+      "type": "string[]",
       "facet": true,
       "optional": true
     },
     {
       "name": "author_2",
-      "type": "string",
+      "type": "string[]",
       "facet": true,
       "optional": true
     },
@@ -86,14 +98,6 @@
     },
     {
       "name": "register_image_filename",
-      "type": "string"
-    },
-    {
-      "name": "register_image_filepath",
-      "type": "string"
-    },
-    {
-      "name": "register_image_orientation",
       "type": "string"
     }
   ]

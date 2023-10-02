@@ -27,7 +27,8 @@ const styles = {
     width: '100%',
     gap: 16,
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   play_cards_container: {
     display: 'grid',
@@ -70,13 +71,16 @@ const ResultCard = props => {
       />
 
       <div style={styles.top_data}>
-        <span><b>{locale['season']}:</b> {props.hit.season_start_year} - {props.hit.season_end_year}</span>
+        <span style={{ display: 'flex' }}><b>{locale['season']}:&nbsp;</b> {props.hit.season_start_year} - {props.hit.season_end_year}</span>
         <br />
-        <span><b>{locale['performance_date']}:</b> {props.hit.performance_date}</span>
+        <span style={{ display: 'flex' }}><b>{locale['performance_date']}:&nbsp;</b> {props.hit.performance_date}</span>
         <br />
-        <span><b>{locale['jour']}:</b> {props.hit.jour}</span>
+        <span style={{ display: 'flex' }}><b>{locale['jour']}:&nbsp;</b> {props.hit.jour}</span>
         <br />
-        <span><b>{locale['total_revenue']}:</b> {props.hit.total_revenue}</span>
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
+          <span style={{ display: 'flex' }}><b>{locale['total_revenue']}:&nbsp;</b> {props.hit.total_revenue}</span>
+          <span style={{ display: 'flex' }}><b>{locale['parterre_total']}:&nbsp;</b> {props.hit.parterre_total}</span>
+        </span>
       </div>
 
       <Divider />

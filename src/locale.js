@@ -30,4 +30,4 @@ const locale = {
   placeholder: 'Cherche ici...'
 };
 
-export default locale;
+export default locale; 

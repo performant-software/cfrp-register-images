@@ -202,6 +202,40 @@ const App = () => (
               exclusive={false}
               fluid
             />
+            <CustomRefinementListAccordion
+              attribute={'parterre_tier'}
+              facetOrder={'label'}
+              searchable={false}
+              showMore={true}
+              labelTransform={(items) => items.map((item) => ({...item, label: item.label*100 + '-' + (item.label*100+99)}))}
+              title={locale['parterre_total']}
+            />
+            <Accordion
+              as={Segment}
+              className="facet"
+              defaultActiveIndex={[0]}
+              panels={[
+                {
+                  key: 'parterre_total',
+                  title: locale['parterre_total'],
+                  content: {
+                    content: (
+                      <CustomRangeSlider
+                        attribute='parterre_total'
+                        defaultValues={{
+                          min: 0,
+                          max: 1264,
+                        }}
+                        min={0}
+                        max={1264}
+                      />
+                    ),
+                  },
+                },
+              ]}
+              exclusive={false}
+              fluid
+            />
             <RefinementListAccordion
               attribute={'genre_1'}
               searchable={true}

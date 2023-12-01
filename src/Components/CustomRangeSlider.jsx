@@ -87,6 +87,10 @@ const CustomRangeSlider = (props) => {
           input: 'rangeInput',
           root: 'rangeForm'
         }}
+        translations={{
+          separatorElementText: 'à',
+          submitButtonText: 'Mise a jour'
+        }}
         />
     </>
   );

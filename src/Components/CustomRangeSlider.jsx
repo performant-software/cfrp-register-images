@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import { useConnector } from 'react-instantsearch-hooks-web';
+import { RangeInput, useConnector } from 'react-instantsearch-hooks-web';
 import connectRange from 'instantsearch.js/es/connectors/range/connectRange';
 
 export const useRangeSlider = (props) => {
@@ -81,6 +81,17 @@ const CustomRangeSlider = (props) => {
         max={props.max}
         value={[valueDisplay.min, valueDisplay.max]}
       />
+      <RangeInput 
+        attribute={props.attribute}
+        classNames={{
+          input: 'rangeInput',
+          root: 'rangeForm'
+        }}
+        translations={{
+          separatorElementText: 'à',
+          submitButtonText: 'Mise a jour'
+        }}
+        />
     </>
   );
 };

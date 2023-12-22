@@ -2,6 +2,7 @@ const locale = {
   register_id: 'Registre',
   jour: 'Jour',
   performance_date: 'Date',
+  performance_month: 'Mois',
   total_revenue: 'Recettes Totales (livres)',
   parterre_total: 'Recettes de Parterre (livres)',
   season: 'Saison',

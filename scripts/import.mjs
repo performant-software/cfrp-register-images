@@ -42,16 +42,18 @@ const run = async () => {
     logLevel: 'debug'
   });
 
-  log('Removing exising collections...');
+  log('Removing exising collection...');
 
-  const collections = await client.collections().retrieve();
+  // const collections = await client.collections().retrieve();
 
-  for (let i = 0; i < collections.length; i+= 1) {
-    const collection = collections[i];
-    await client.collections(collection.name).delete();
-  }
+  // for (let i = 0; i < collections.length; i+= 1) {
+  //   const collection = collections[i];
+  //   await client.collections(collection.name).delete();
+  // }
 
   const indexName = process.env.REACT_APP_INDEX_NAME;
+  await client.collections(indexName).delete();
+  
   log(`Creating collection '${indexName}'...`);
 
   await client

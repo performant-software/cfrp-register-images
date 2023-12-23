@@ -7,9 +7,9 @@ const capitalize = string =>
   string ? string[0].toUpperCase() + string.slice(1) : string;
 
 const RefinementListAccordion = props => {
-  const { attribute, facetOrder, searchable, showMore, title } = props;
+  const { attribute, facetOrder, searchable, showMore, title, labelTransform } = props;
 
-  const transformation = items => {
+  const sortTransform = items => {
     if (!facetOrder) {
       return items.map(item => ({
         ...item,
@@ -34,6 +34,13 @@ const RefinementListAccordion = props => {
       // can pass in custom sorting function
     }
   };
+
+  //if a label transform was passed in, apply it after the sort transform
+  const transformation = items => {
+    return (
+      labelTransform ? labelTransform(sortTransform(items)) : sortTransform(items)
+    );
+  }
 
   return (
     <Accordion

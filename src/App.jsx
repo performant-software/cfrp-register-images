@@ -60,13 +60,16 @@ const jourFacetOrder = items => {
     Sunday: 6,
   };
 
+  
   return items
-    .sort((a, b) => jourSorter[a.label] - jourSorter[b.label])
-    .map(item => ({
-      ...item,
-      label: capitalize(item.label),
-    }));
+  .sort((a, b) => jourSorter[a.label] - jourSorter[b.label])
+  .map(item => ({
+    ...item,
+    label: capitalize(item.label),
+  }));
 };
+
+const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 
 const App = () => (
   <div>
@@ -168,6 +171,13 @@ const App = () => (
               showMore={true}
               title={locale['jour']}
             />
+            <RefinementListAccordion
+              attribute={'performance_month'}
+              facetOrder={'label'}
+              serachable={false}
+              title={locale['performance_month']}
+              labelTransform={(items) => items.map((item, idx) => ({...item, label: months[idx]}))}
+            />
             <CustomRefinementListAccordion
               attribute={'tier'}
               facetOrder={'label'}
@@ -203,11 +213,11 @@ const App = () => (
               fluid
             />
             <CustomRefinementListAccordion
-              attribute={'parterre_tier'}
+              attribute={'parterre_tier_fine'}
               facetOrder={'label'}
               searchable={false}
               showMore={true}
-              labelTransform={(items) => items.map((item) => ({...item, label: item.label*100 + '-' + (item.label*100+99)}))}
+              labelTransform={(items) => items.map((item) => ({...item, label: item.label*10 + '-' + (item.label*10+9)}))}
               title={locale['parterre_total']}
             />
             <Accordion

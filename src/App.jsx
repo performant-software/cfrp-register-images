@@ -176,6 +176,7 @@ const App = () => (
               facetOrder={'label'}
               serachable={false}
               title={locale['performance_month']}
+              limit={12}
               labelTransform={(items) => items.map((item, idx) => ({...item, label: months[idx]}))}
             />
             <CustomRefinementListAccordion

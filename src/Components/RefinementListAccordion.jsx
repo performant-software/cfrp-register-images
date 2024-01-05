@@ -7,7 +7,7 @@ const capitalize = string =>
   string ? string[0].toUpperCase() + string.slice(1) : string;
 
 const RefinementListAccordion = props => {
-  const { attribute, facetOrder, searchable, showMore, title, labelTransform } = props;
+  const { attribute, facetOrder, searchable, showMore, title, labelTransform, limit } = props;
 
   const sortTransform = items => {
     if (!facetOrder) {
@@ -58,6 +58,7 @@ const RefinementListAccordion = props => {
                 searchable={searchable}
                 showMore={showMore}
                 showMoreLimit={100}
+                limit={limit || 10}
                 transformItems={items => transformation(items)}
                 translations={{
                   showMoreButtonText({ isShowingMore }) {

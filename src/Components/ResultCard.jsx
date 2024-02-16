@@ -77,10 +77,7 @@ const ResultCard = props => {
         <br />
         <span style={{ display: 'flex' }}><b>{locale['jour']}:&nbsp;</b> {props.hit.jour}</span>
         <br />
-        <span style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={{ display: 'flex' }}><b>{locale['total_revenue']}:&nbsp;</b> {props.hit.total_revenue}</span>
-          <span style={{ display: 'flex' }}><b>{locale['parterre_total']}:&nbsp;</b> {props.hit.parterre_total}</span>
-        </span>
+        <span style={{ display: 'flex' }}><b>{locale['total_revenue']}:&nbsp;</b> {props.hit.total_revenue}</span>
       </div>
 
       <Divider />

@@ -29,12 +29,6 @@
       "facet": true
     },
     {
-      "name": "parterre_total",
-      "type": "int32",
-      "facet": true,
-      "optional": true
-    },
-    {
       "name": "season_start_year",
       "type": "int32",
       "facet": true
@@ -46,18 +40,6 @@
     },
     {
       "name": "tier",
-      "type": "int32",
-      "facet": true,
-      "optional": true
-    },
-    {
-      "name": "parterre_tier",
-      "type": "int32",
-      "facet": true,
-      "optional": true
-    },
-    {
-      "name": "parterre_tier_fine",
       "type": "int32",
       "facet": true,
       "optional": true

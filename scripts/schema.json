@@ -94,7 +94,18 @@
     },
     {
       "name": "register_image_filename",
-      "type": "string"
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "register_image_left_id",
+      "type": "int64[]",
+      "optional": true
+    },
+    {
+      "name": "register_image_right_id",
+      "type": "int64[]",
+      "optional": true
     }
   ]
 }

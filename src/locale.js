@@ -28,7 +28,8 @@ const locale = {
   show_less: 'En voir moins',
   clear_refinements: 'Supprimer tous les filtres',
   noResults: 'No results',
-  placeholder: 'Cherche ici...'
+  placeholder: 'Cherche ici...',
+  view_flipbook: 'View in Register Book'
 };
 
 export default locale; 

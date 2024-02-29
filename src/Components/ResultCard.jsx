@@ -68,6 +68,8 @@ const ResultCard = props => {
         modalOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         hit={props.hit}
+        leftIDs={props.hit.register_image_left_id}
+        rightIDs={props.hit.register_image_right_id}
       />
 
       <div style={styles.top_data}>

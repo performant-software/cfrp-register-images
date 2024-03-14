@@ -253,7 +253,6 @@ const App = () => (
         </div>
       </InstantSearch>
     </div>
-    <image src="/register-images/119/000/original/M119_02_R65_154v.jpg" />
   </div>
 );
 

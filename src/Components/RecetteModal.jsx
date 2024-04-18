@@ -32,10 +32,10 @@ const RecetteModal = props => {
 
     if (rightIDs) {
       const id = rightIDs[0].toString();
-      // const prefix2 = id.slice(-3,);
-      // const prefix1 = id.length == 3 ? '000' : id.length == 4 ? `00${id.slice(0,1)}` : id.length == 5 ? `0${id.slice(0,2)}` : id.slice(0,3);
+      const prefix2 = id.slice(-3,);
+      const prefix1 = id.length == 3 ? '000' : id.length == 4 ? `00${id.slice(0,1)}` : id.length == 5 ? `0${id.slice(0,2)}` : id.slice(0,3);
       // const fileName = `${id}_${imageFilepath.replaceAll('r.jpg', '').replaceAll('.jpg', '').replaceAll('M1119', 'M119')}r.jpg`;
-      setMainImageUrl(`/${id}.jpg`);
+      setMainImageUrl(`/register-images/${prefix1}/${prefix2}/original/main.jpg`);
     }
 
   }, [props])
